@@ -1,0 +1,31 @@
+<html>
+<head>
+    <!-- Moralis SDK code -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <title>Asset Consolidation Form</title>
+    <style>
+        img{
+            width: 35px;
+            height: 35px;
+        }
+        
+        button{
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Moralis/Covalent Asset Consolidator</h1>
+    <button id="login" onclick="login()">Login with MetaMask</button>
+    <button id="logout" onclick="logout()">Logout</button>
+    <form id="account_cards" action="dialog">
+        <!-- form will be appended here -->
+    </form>
+    <script src="./buildPopulateDisplayForm.js"></script>
+    <script src="./moralis_poll.js"></script>
+</body>
+</html>
+
+

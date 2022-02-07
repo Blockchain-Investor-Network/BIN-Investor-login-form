@@ -24,6 +24,7 @@ Moralis.onAccountChanged( async (account) => {
   
 async function logout(){
     await Moralis.User.logOut();
+    document.getElementById('account_cards').style.visibility = 'hidden';
     console.log('logged out');
 }
 

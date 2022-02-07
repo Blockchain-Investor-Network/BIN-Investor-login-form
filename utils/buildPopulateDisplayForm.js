@@ -1,4 +1,5 @@
 async function buildPopulateDisplayForm(){
+    document.getElementById('account_cards').style.visibility = 'visible';
     let userAccounts = Moralis.User.current().attributes.accounts;
     console.log(userAccounts);
     let allUserBalances = [];

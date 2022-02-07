@@ -48,10 +48,14 @@ async function buildAccountCard(balances){
             label.setAttribute('id', `label_${balance.symbol}_${balances.indexOf(balance)}`);
             label.innerHTML = `${balance.name}: ${wholeNumber}`;
             let breakTag = document.createElement('br');
-            cardContainer.appendChild(image);
-            cardContainer.appendChild(checkbox);
-            cardContainer.appendChild(label);
-            cardContainer.appendChild(breakTag);
+            let singleEntry = document.createElement('div');
+            singleEntry.setAttribute('class', 'single-entry');
+            
+            singleEntry.appendChild(image);
+            singleEntry.appendChild(checkbox);
+            singleEntry.appendChild(label);
+            cardContainer.appendChild(singleEntry);
+            // cardContainer.appendChild(breakTag);
             console.log(balance);
         }
         let totalTag = document.createElement('h2');

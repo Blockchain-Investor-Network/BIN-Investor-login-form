@@ -17,14 +17,17 @@
 </head>
 
 <body>
-    <h1>Moralis/Covalent Asset Consolidator</h1>
+    <h1>BIN: Asset Registration Form</h1>
     <button id="login" onclick="login()">Login with MetaMask</button>
     <button id="logout" onclick="logout()">Logout</button>
     <form id="account_cards" action="dialog">
         <!-- form will be appended here -->
     </form>
-    <script src="./buildPopulateDisplayForm.js"></script>
-    <script src="./moralis_poll.js"></script>
+    <script src="./utils/price_conversions.js"></script>
+    <script src="./utils/buildPopulateDisplayForm.js"></script>
+    <script src="./BIN_Investor_Form.js"></script>
+    <!-- after form creation add a bunch of listeners to update the total ammount -->
+    
 </body>
 </html>
 

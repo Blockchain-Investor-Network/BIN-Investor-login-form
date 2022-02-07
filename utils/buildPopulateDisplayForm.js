@@ -9,7 +9,7 @@ async function buildPopulateDisplayForm(){
     for(balanceArray of allUserBalances){
         let accnCard = buildAccountCard(balanceArray);
     }
-    // return document.createElement('input');
+    addSoManyListeners();
 }
 
 async function buildAccountCard(balances){
@@ -37,10 +37,13 @@ async function buildAccountCard(balances){
             // ERROR:
             // Uncaught (in promise) Error: No pools found with enough liquidity, to calculate the price
             // at Function.<anonymous> (moralis.js:7748:23)
+            let dollarEquivelant = wholeNumber*priceConversions[balance.symbol];
+            checkbox.setAttribute('dollarValue', `${dollarEquivelant}`);
+
             let label = document.createElement('label');
             let image = document.createElement('img');
             image.setAttribute('src', balance.thumbnail);
-            label.setAttribute('for', `balance_${balances.indexOf(balance)}`);
+            label.setAttribute('for', `${balance.symbol}_balance_${balances.indexOf(balance)}`);
             label.setAttribute('id', `label_${balance.symbol}_${balances.indexOf(balance)}`);
             label.innerHTML = `${balance.name}: ${wholeNumber}`;
             let breakTag = document.createElement('br');
@@ -51,12 +54,36 @@ async function buildAccountCard(balances){
             console.log(balance);
         }
         let totalTag = document.createElement('h2');
-        totalTag.innerHTML = 'TOTAL:';
+        totalTag.innerHTML = 'TOTAL: $';
         let totalSpan = document.createElement('span');
         totalSpan.setAttribute('class', 'total');
+        totalSpan.innerHTML = 0;
         totalTag.appendChild(totalSpan);
         cardContainer.appendChild(totalTag);
         document.getElementById('account_cards').append(cardContainer);
 
     }
+}
+
+function addSoManyListeners(){
+    let checkBoxes = document.querySelectorAll('[type="checkbox"]');
+    checkBoxes.forEach( (box) => {
+        box.addEventListener('change', (e) => {
+            let totalSpan = document.querySelector('.total');
+            let totalAmt = parseInt(totalSpan.innerHTML);
+            console.log(totalSpan);
+            console.log('up top and' + totalAmt);
+            if(box.checked){
+                totalAmt += parseInt(box.getAttribute('dollarValue'));
+            }
+            else{
+                totalAmt -= parseInt(box.getAttribute('dollarValue'));
+            }
+            totalSpan.innerHTML = totalAmt;
+            console.log(totalAmt);
+
+        });
+
+    });
+
 }
